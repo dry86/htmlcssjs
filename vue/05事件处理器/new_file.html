@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="box">
+			<button @click="handleClick"> click1</button>
+			<button @click="handleClick()"> click2</button>
+			<button @click="isShow=!isShow"> click3</button>
+			<div v-show="isShow">111111</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		new Vue({
+			el:"#box",
+			data:{
+				isShow:false
+			},
+			methods:{
+				handleClick(){
+					this.isShow = !this.isShow
+				}
+			}
+		})
+	</script>
+</html>

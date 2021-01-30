@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<div style="background: #000000;">2121212</div>
+			<button @click="handleClick()">click</button>
+			<div :class="isActive?'red':'yellow'"> 动态绑定-三目写法</div>
+			<div :class="classobj"> 动态绑定-对象写法</div>
+			<div :class="classarr"> 动态绑定-数组写法</div>
+			
+			
+			<div :style="'background:'+(isActive?'red':'yellow')"> 动态绑定-三目写法</div>
+			<div :style="styleobj"> 动态绑定style-对象写法</div>
+			<div :style="stylearr"> 动态绑定-数组写法</div>
+		</div>
+	</body>
+	<script src="../js/vue.js"></script>
+	<script>
+		var vm = new Vue({
+			el:"#box",
+			data:{
+				isActive:true,
+				classobj:{
+					a:true,
+					b:true
+				},
+				classarr:["a","b"],
+				styleobj:{
+					backgroundColor:"red"
+				},
+				stylearr:[]
+			},
+			methods:{
+				handleClick(){
+					this.isActive = !this.isActive
+				}
+				
+			}
+		})
+	</script>
+</html>
