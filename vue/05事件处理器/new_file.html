@@ -11,10 +11,16 @@
 			<button @click="handleClick()"> click2</button>
 			<button @click="isShow=!isShow"> click3</button>
 			<div v-show="isShow">111111</div>
+			
+			<ul @click="handleulClick()">
+				<li @click="handleliClick()">
+					111111
+				</li>
+			</ul>
 		</div>
 	</body>
-	<script type="text/javascript">
-		new Vue({
+	<script >
+		var vm = new Vue({
 			el:"#box",
 			data:{
 				isShow:false
@@ -22,6 +28,12 @@
 			methods:{
 				handleClick(){
 					this.isShow = !this.isShow
+				},
+				handleulClick(){
+					console.log("ul click")
+				},
+				handleliClick(){
+					Console.log("lllll")
 				}
 			}
 		})
