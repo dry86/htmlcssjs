@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	
+	
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+			{{myname.substring(0,1).toUpperCase() + myname.substring(1) }}
+			
+			
+			<p> 计算属性：{{getMyName}}</p>
+			
+			<p> 普通方法：{{getMyNameMethods()}}</p>
+			
+		</div>
+		<script>
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					myname:"wws"
+				},
+				methods:{
+					getMyNameMethods(){
+						return this.myname.substring(0,1).toUpperCase() + this.myname.substring(1)
+					}
+				},
+				computed:{
+					getMyName(){
+						return this.myname.substring(0,1).toUpperCase() + this.myname.substring(1)
+					}
+				}
+			})
+		</script>
+	</body>
+	
+</html>

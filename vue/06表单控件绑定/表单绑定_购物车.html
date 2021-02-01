@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+			<input type="checkbox" @change="handelchange()" v-model="isAllchoise"/> 全选
+			<ul>
+				<li v-for="data in datalist">
+					<input type="checkbox" v-model="checkgroup" :value="data" @change="handlelichange()"/>
+					{{data}}
+					<button @click="handeldelclick(data)">del</button>
+					{{data.number}}
+					<button @click="data.number++">add</button>
+				</li>
+				
+			</ul>
+			<!-- {{checkgroup}} -->
+			<p>总金额计算：{{ getSum() }}</p>
+		</div>
+	</body>
+	
+	
+	<script>
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				isAllchoise:false,
+				checkgroup:[],
+				datalist:[
+					{
+							name:"衣服1",
+							price:1,
+							number:2,
+							id:"1",
+					},
+					{
+							name:"衣服2",
+							price:2,
+							number:2,
+							id:"2",
+					},
+					{
+							name:"衣服4",
+							price:3,
+							number:1,
+							id:"3",
+					}
+				]
+			},
+			methods:{
+				getSum(){
+					var sum = 0;
+					for(var i in this.checkgroup){
+						sum += this.checkgroup[i].number * this.checkgroup[i].price
+					}
+					return sum
+				},
+				handelchange(){
+					// console.log(this.isAllchoise)
+					if(this.isAllchoise){
+						this.checkgroup=this.datalist
+					}else{
+						this.checkgroup=[]
+					}
+				},
+				handlelichange(){
+					// console.log("dasda")
+					if(this.checkgroup.length === this.datalist.length){
+						this.isAllchoise = true
+					}else{
+						this.isAllchoise = false
+					}
+				},
+				handeldelclick(data){
+					data.number--;
+					if(data.number === 0){
+						data.number = 1;
+					}
+				}
+			}
+		})
+	</script>
+</html>

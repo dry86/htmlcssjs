@@ -12,10 +12,12 @@
 			<button @click="isShow=!isShow"> click3</button>
 			<div v-show="isShow">111111</div>
 			
-			<ul @click="handleulClick()">
-				<li @click="handleliClick()">
+			<ul @click.self="handleulClick()">
+				<li @click.stop="handleliClick()">
 					111111
 				</li>
+				<li @click="handleliClick()">22222</li>
+				<li @click.once="handleliClick()">33333</li>
 			</ul>
 		</div>
 	</body>
@@ -33,7 +35,7 @@
 					console.log("ul click")
 				},
 				handleliClick(){
-					Console.log("lllll")
+					console.log("li click")
 				}
 			}
 		})

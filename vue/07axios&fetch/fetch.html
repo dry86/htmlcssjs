@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+			<button @click="handelClick()"> fethc获取信息</button>
+			<ul>
+				<li v-for="data in datalist">
+					{{data}}
+				</li>
+			</ul>
+		</div>
+		
+		<script>
+			new Vue({
+				el:"#app",
+				data:{
+					datalist:[],
+					response:""
+				},
+				methods:{
+					handelClick(){
+						fetch("https://api.github.com/users/wws86")
+						.then(response => response.json())
+						.then(json => {
+							console.log(json)
+							this.datalist = json
+						})
+						
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
