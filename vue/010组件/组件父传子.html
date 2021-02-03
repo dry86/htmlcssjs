@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+			<navbar myname="home" :myshow="false"></navbar>
+			<navbar myname="list" :myshow="true"></navbar>
+		</div>
+	</body>
+	<script >
+		
+		Vue.component("navbar",{
+			template:`
+			<div>
+				<button>返回</button>
+				navbar -- {{myname}}
+				<button v-show="myshow">主页</button>
+			</div>`,
+			
+			props:["myname","myshow"]  ,//接受父组件传来的属性
+			props:{
+				myname:String,
+				myshow:Boolean
+			}
+		})
+		
+		
+		
+		new Vue({
+			el:"#app",
+			data:{
+				parentdata:"aaa"
+			}
+		})
+	</script>
+</html>

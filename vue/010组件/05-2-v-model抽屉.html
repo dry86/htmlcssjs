@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+            <navbar v-model="isShow"></navbar>
+            <sidebar v-show="isShow"></sidebar>
+		</div>
+	</body>
+	<script>
+
+        Vue.component("navbar",{
+            template:`
+            <div>
+                <button @click="handleClick()">click</button>  --导航栏
+            </div>
+            `,
+            props:["value"], //接受v-model传来得值
+            methods:{
+            handleClick(){
+              this.$emit("input",!this.value)// 改变v-model传来得值
+            }
+          }            
+        })
+
+
+
+        Vue.component("sidebar",{
+          template:`
+            <div style="background:yellow;width:300px;">
+                <ul>
+                  <li>11111</li>  
+                  <li>11111</li>  
+                  <li>11111</li>  
+                  <li>11111</li>  
+                  <li>11111</li>  
+                  <li>11111</li>  
+                  <li>11111</li>  
+                </ul>  
+            </div>
+          `
+        })
+
+
+
+		var vm=new Vue({
+            el:"#app",
+            data:{
+                isShow:false
+            },
+            methods:{
+
+            }
+		})
+	</script>
+</html>

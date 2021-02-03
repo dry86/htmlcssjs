@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+
+            <spcinput type="text" title="姓名" v-model="username"></spcinput>
+            <spcinput type="number" title="年龄" v-model="age"></spcinput>
+            <spcinput type="password" title="密码" v-model="password"></spcinput>
+            <button @click="handleSubmit">submit</button>
+            <button @click="handleReset">reset</button>
+		</div>
+	</body>
+	<script>
+
+        Vue.component("spcinput",{
+            props:["type","title","vaule"],
+            template:`
+            <div>
+                <label>{{title}}</label>
+                
+                <input :type="type" style="background:red" @input="handleinput"/>
+                
+            </div>
+            `,
+            methods:{
+                handleinput(evt){
+                    this.$emit("input",evt.target.value)
+                }
+            }
+        })
+
+
+
+		var vm=new Vue({
+            el:"#app",
+            data:{
+            isShow:false,
+            username:"default username",
+            age:0,
+            password:"default passowrd"
+          },
+          methods: {
+            handleSubmit(){
+                console.log(this.username,this.age,this.password)
+            },
+            handleReset(){
+                this.username = ""
+                this.age =0
+                this.password=""
+            }
+          },
+		})
+	</script>
+</html>

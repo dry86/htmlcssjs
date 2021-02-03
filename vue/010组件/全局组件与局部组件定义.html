@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+			<navbar></navbar>
+			<slidbavbar></slidbavbar>
+		</div>
+	</body>
+	<script>
+		//1.全局定义组件
+		Vue.component("navbar",{
+			template:`
+			<div>
+				<button @click="handelclick()">返回</button>
+				navbar--{{navbarchild}}
+				<button>主页</button>
+				<child></child>    <!--此组件为navbar的孩子-->
+				<navbarchild></navbarchild>
+			</div>`,
+			methods:{
+				handelclick(){
+					console.log("asd")
+				}
+			},
+			data(){
+				return {
+					navbarchild:"navbarname"
+				}
+			},
+		//<!-- 	局部组件定义 -->
+			components:{
+				navbarchild:{
+					template:`<div> navbarchild组件-局部定义,不能由父组件之外的组件使用</div>`
+				}
+			} 
+		}) 
+		
+		Vue.component("child",{
+			template:`
+				<div> child组件-全局定义</div>
+			`
+		})
+		
+		Vue.component("slidbavbar",{
+			template:`
+			<section>
+				<div> slidbavbar组件-全局定义,为navbar的兄弟</div>
+				
+				<div>asdasd</div>	 			
+			</section>
+			`
+		})
+		
+		
+		new Vue({
+			el:"#app"
+		})  //<!-- root component 根组件对模版就是 body里的div -->
+	</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+
+            <spe_input type="text" title="姓名" @event="event1"></spe_input>
+            <spe_input type="number" title="年龄" @event="event2"></spe_input>
+            <spe_input type="password" title="密码" @event="event3"></spe_input>
+
+            <button>submit</button>
+            <button>reset</button>
+		</div>
+	</body>
+	<script>
+        Vue.component("spe_input",{
+            props:["type","title"],
+            data(){
+                return {
+                    mytext:""
+                }
+            },
+            template:`
+            <div>
+                <label>{{title}}</label>
+                {{mytext}}
+
+                <input :type="type" style="background:green" 
+                       v-model="mytext" @input="handleinput"/>
+            </div>
+            `,
+            methods:{
+                handleinput(){
+                    this.$emit("event",this.mytext)
+                }
+            },
+
+        })
+		new Vue({
+            el:"#app",
+            data:{
+                isShow:false,
+                username:"",
+                age:0,
+                password:""
+            },
+            methods:{
+            event1(data){
+              console.log("姓名--",data)
+              this.username = data;
+            },
+            event2(data){
+              console.log("年龄--",data)
+              this.age = data
+            },
+            event3(data){
+              console.log("密码--",data)
+              this.password = data
+            }
+            }
+		})
+	</script>
+</html>

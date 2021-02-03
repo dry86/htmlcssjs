@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+            
+
+            <child ref="mychild"></child>
+            <button @click="handleAdd">
+                add
+            </button>
+		</div>
+	</body>
+	<script>
+
+
+
+        Vue.component("child",{
+
+            data(){
+                return {
+                    childname:"111111"
+                }
+            },
+            
+            template:`
+                <div style="background:yellow"> child--{{childname}}</div>
+            `
+        })
+
+		new Vue({
+            el:"#app",
+            methods:{
+                handleAdd(){
+                    this.$refs.mychild.childname="00000000"
+                }
+            }
+		})
+	</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+			
+        <navbar @myevent="change"></navbar>
+        <sidebar v-show="isShow"></sidebar>
+			
+		</div>
+	</body>
+	<script>
+		
+		Vue.component("navbar",{
+			template:`
+				<div style="background-color:green;">
+					12312 --<button @click="handleClick">click</button>
+				</div>
+			`,
+			methods:{
+				handleClick(){
+					this.$emit("myevent")
+				}
+			},
+		})
+		
+		Vue.component("sidebar",{
+			template:`
+				<div style="background-color:yellow;width:200px;">
+					<ul>
+						<li> 123123123</li>
+					</ul>
+				</div>
+			`
+		})
+		
+		
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				isShow:false
+			},
+			methods:{
+				change(){
+					this.isShow = !this.isShow
+				}
+			}
+		})
+		
+	</script>
+</html>

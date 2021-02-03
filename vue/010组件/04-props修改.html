@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+            {{title}}
+            <child :mytitle="title"></child>
+		</div>
+	</body>
+	<script>
+
+        Vue.component("child",{
+            template:`
+                <div>
+                    child
+                    {{mytext}}
+                </div>
+            `,
+            props:["mytitle"],
+
+            data(){
+                return {
+                    mytext:""
+                }
+            },
+            //
+            mounted() {
+                // this.mytitle=2222222222222
+                this.mytext = this.mytitle+"asdas"
+            },
+        })
+
+		new Vue({
+            el:"#app",
+            data:{
+                title:"11111111111111"
+            }
+		})
+	</script>
+</html>

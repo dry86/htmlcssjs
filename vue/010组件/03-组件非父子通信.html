@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../js/vue.js"></script>
+	<body>
+		<div id="app">
+
+            <child1></child1>
+            <child2></child2>
+		</div>
+	</body>
+	<script>
+
+        var bus = new Vue()   //空的vue实例
+
+
+        Vue.component("child1",{
+            template:`
+                <div>
+                    child1
+                    <button @click="handleclick()">详细信息</button>
+                </div>
+            `,
+            methods:{
+                handleclick(){
+                    bus.$emit("2.3","8:00 p.m")
+                }
+            }
+        })
+        
+        Vue.component("child2",{
+            template:`
+             <div>
+                child2-订阅者
+            </div>
+            `,
+
+            mounted(){   //与生命周期有关
+                console.log("mounted-生命周期-dom创建完之后就会触发")
+
+                bus.$on("2.3",(data)=>{
+                    console.log("child2----",data)
+                })
+            }
+
+        })
+
+		new Vue({
+			el:"#app",
+		})
+	</script>
+</html>

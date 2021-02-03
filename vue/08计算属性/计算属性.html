@@ -11,10 +11,10 @@
 		<div id="app">
 			{{myname.substring(0,1).toUpperCase() + myname.substring(1) }}
 			
+			 
+			<p> 计算属性：{{getMyName}}</p>                //计算属性会被缓存 ，只会调用一次
 			
-			<p> 计算属性：{{getMyName}}</p>
-			
-			<p> 普通方法：{{getMyNameMethods()}}</p>
+			<p> 普通方法：{{getMyNameMethods()}}</p>       //方法每调用一次 方法函数就会被调用一次
 			
 		</div>
 		<script>
