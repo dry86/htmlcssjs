@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="../../js/vue.js"></script>
+	<body>
+		<div id="app">
+			<child>
+				<div slot="b">111</div>
+				<div slot="a">222</div>
+			</child>
+			
+		        <navbar>
+			
+		            <div slot="left">
+		              <button>返回</button>
+		              <i>图标</i>
+		            </div>
+			
+		            <div slot="right">
+		              <button>搜索</button>
+		              <i>图标</i>
+		            </div>
+		        </navbar>
+		</div>
+	</body>
+	<script>
+		
+		
+		Vue.component("child",{
+			template:`
+			<div>
+				<slot name="a"> </slot>
+				a
+				b
+				
+				<slot name="b"> </slot>
+			</div>
+			`,
+		})
+		
+        Vue.component("navbar",{
+          template:`<div>
+	            <slot name="left"></slot>
+	            navbar  
+	            <slot name="right"></slot>
+	          </div>`
+        })
+
+		var vm=new Vue({
+			el:"#app"
+		})
+	</script>
+</html>
